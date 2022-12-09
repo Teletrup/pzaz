@@ -1,0 +1,288 @@
+==================================================
+;SECTIONS
+
+sections
+todo
+spec
+insert mode
+browser stuff
+uncategorized
+
+==================================================
+;TODO
+
+
+symbol pzaz
+list pzaz
+render a sample list
+provisional "ed" component
+provisional "insert" mode
+
+==================================================
+;SPEC
+
+a tree editor for lisp
+because it's easier to manipulate a tree than text
+  rly?
+to do some cool stuff
+  like?
+    knobs
+
+editor modes
+  insert
+  normal
+
+
+==================================================
+;INSERT MODE
+
+entering insert mode when focusing an element of type:
+  list
+    cursor after first paren
+    that is - leftmost child recursively
+  ilist
+  string
+  num
+  sym
+
+leaving insert mode
+  last focused in normal mode?
+  wherever cursor lands now?
+
+dot
+  when list is already improper?
+    toggle
+      but when in the middle of a word?
+
+leaving the blank
+  blank gets removed
+  improper list turns to proper list
+
+breaking insertion
+  event fires
+  stuff gets whangjangled
+  dom gets uptaded
+    but when?
+
+
+==================================================
+;BROWSER STUFF
+
+inserts in JS arrays
+
+is "parent" something reserved in js?
+
+html is weird
+  alternating tag closing
+
+position in css & dom
+  absolute
+  relative
+  fixed
+
+inheritance
+
+is this reinventing React?
+
+prepending child
+  prepend method?
+append vs appendChild
+
+
+==================================================
+;UNCATEGORIZED
+
+google "tree view tutorial"
+
+don't note somehting you can do in 5 minutes
+  unless a lot of such things come to mind
+
+learn haskell?
+
+cannonical list display
+
+throw away classes?
+  or just do without them
+
+when to write a class?
+  
+
+top-down init?
+  seems like a bit nicer way to init a cyclic tree
+    why?
+    does it matter?
+      nay
+
+initing with an expression?
+initing with an s-expression?
+  
+
+reformatting a component
+  re-generate DOM?
+  update DOM?
+
+each pzaz node is an object
+  some are atomic
+  some are composite
+  content of atomic nodes is arbitrary
+  content of composite nodes is a list of pzaz nodes
+each pzaz node is associated with a DOM element
+so "parent" fields are ok
+
+pzaz -> component
+ed is a component too
+
+dom elements aren't editable
+they just have events
+
+so apparently touching DOM is really slow
+does it matter?
+
+atomic and composite nodes
+
+doing it like a linked list?
+  each pzaz node has 2 children
+  naah, it would fsck up the rendering
+    in defun-like indent style, child 2 has higher indent than child 3
+
+"contents" has pzaz nodes
+"el" is a dom element
+
+initializing elements
+empty improper lists?
+  no!
+
+
+pzaz updates dom
+dom updates pzaz 
+  no, it doesn't
+
+
+doing it read-only first
+  a js-object with symbols
+
+but kreck is typeless
+  is JSkreck typeless too?
+  should that matter?
+  I want it aura-based anyway
+    rly?
+      auras can express much more than types
+
+that elm stuff
+
+augmented expression
+  it's like a big aura with literals
+
+changing node types
+  re-constructing?
+    seems cleaner
+  altering properties?
+    seems marginally faster
+
+linked expression?
+
+extending DOM instead of wrapping it
+  yay
+    can remove()
+      but there's more stuff to do on a removal of element
+  nay
+    supposedly cursed
+
+dom transaction
+  separate non-dom stuff from dom-stuff and uptate the whole dom at once
+
+list pretty printing using css classes
+  list-content-ver
+  list-content-hor
+  relative position?
+
+pretty printing improper lists?
+  variant 1
+    (a b
+       c
+       d . e)
+  variant 2
+    (a b
+       c
+       d
+       .
+       e)
+
+
+ending parens
+  same level as list contents?
+
+stringify toggle for arbitrary atom
+  enven strings!
+
+wrapper & content?
+flat?
+
+switching between sym, string, list, ilist, alist?
+  in insert mode it should switch automagically
+  always wff?
+    it should always parse
+
+numbers
+  can't use invalid radix
+
+pressing '"', or "(" in insert mode?
+
+
+pressing '.' in word and after a space should do the same thing
+
+
+obj
+  sym
+  list
+    proper
+    improper
+  string
+
+
+navi mode
+  big cursor
+  "i" enters insert mode like in vim
+  vim-like bindings for navigation and lispy stuff
+
+insert mode?
+  single character cursor
+  doesn't input raw text though, it writes directly to the tree
+  it shouldn't feel much different than inputting raw text
+
+editor modes
+
+space in the improper part of an improper list
+  left element 
+
+empty node - gets deleted when leaving insert mode
+
+keys that work differently
+  esc - leaves string mode
+  space - splits node
+  left ket - insert list
+  right ket - leave list?
+    nay
+      not really useful
+  dot
+    toggles proper/improper list
+      in the current list
+      and also focuses it
+      unless in string mode
+
+string mode
+  '"' inserts '\"'
+
+syms/numbers together?
+  yay
+  nay
+  shouldn't matter
+
+switching between proper and improper list
+
+kreck expr vs dom
+
+component objects and dom
+
+
+Trying to do stuff yourself you realize what stuff is for in more detail
