@@ -41,13 +41,15 @@ class PzazList extends Pzaz {
     this.members = members;
     this.el.appendChild(document.createTextNode('('));
     for (let i in members) {
+      members[i].parent = this;
       let mel = this.el.appendChild(members[i].el);
+      //vertical formatting logic here
+      //separate as a function of indent and index?
       if (i < members.length - 1) {
-        //vertical formatting logic here
-        let sep = document.createElement('br');
+        let sep = (i > 0) ? document.createElement('br') : document.createTextNode(' ');
         this.el.appendChild(sep);
       }
-      if (i != 0) {
+      if (i > 1) {
         mel.style.marginLeft = '10px';
       }
     }
@@ -94,14 +96,9 @@ const sstri = x => atomp(x) ? `${x}` : `(${lstri(x)})`;
 // ([] === []) == false?
 
 //cannonical rendering
-//check if proper
+
 
 /*
-function renderSexp(x) {
-  if 
-}
-*/
-
 const ltoa = x => {
   let f = (x, res) => atomp(x) ? res : res.append(car(x))
   //'this' in lambdas?
@@ -110,14 +107,31 @@ const ltoa = x => {
   //isn't an imperative way clearer?
     //do it both ways to find out!
 }
+*/
+
+function ltoa(x) {
+  res = [];
+  while (!atomp(x)) {
+    res.push(car(x));
+    x = cdr(x);
+  }
+  return res;
+}
+
+function renderSexp(x) {
+  if (atomp(x)) return new PzazSym(x);
+  //TODO check for improper lists
+  return new PzazList(...ltoa(x).map(renderSexp));
+}
 
 function init() { 
   //pzaz = $('.pzaz');
   //init all components by mapping queried element with a constructor
   //[... document.querySelectorAll('.pzaz-ed')].map(el => new PzazEd(el));
-  a = new PzazSym("abc");
-  b = new PzazList(a, new PzazList(new PzazSym('bcd'), new PzazList(new PzazSym('efg'), new PzazSym('foo'))));
-  l = ['abc', [['bcd', ['foo', null]], ['efg', null]]]
+  //a = new PzazSym("abc");
+  //b = new PzazList(a, new PzazList(new PzazSym('bcd'), new PzazList(new PzazSym('efg'), new PzazSym('foo'))));
+  l = ['abc', [['bcd', ['foo', null]], ['efg', null]]];
+  b = renderSexp(l);
   //diamonds?
   document.body.appendChild(b.el);
 }

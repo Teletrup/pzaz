@@ -11,6 +11,7 @@ uncategorized
 ==================================================
 ;TODO
 
+[looks like boilerplate]
 
 symbol pzaz
 list pzaz
@@ -27,6 +28,9 @@ because it's easier to manipulate a tree than text
 to do some cool stuff
   like?
     knobs
+      no - that's really messy
+    debugger?
+      like cool tree views in console
 
 editor modes
   insert
@@ -91,6 +95,14 @@ append vs appendChild
 
 ==================================================
 ;UNCATEGORIZED
+
+maybe the ed should work on pzaz elements
+
+maybe the problem is I don't JUST want to get it to work
+  I want it to be beautiful
+  maybe the best way to make it beautiful is to do it ugly first
+
+another thing is that there seems to be a lot of beauty in the functional way of doing stuff
 
 google "tree view tutorial"
 
